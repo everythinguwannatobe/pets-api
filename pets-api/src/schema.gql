@@ -1,0 +1,102 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PetOwner {
+  id: String!
+  firstname: String!
+  lastname: String!
+  address: String!
+  mobile: String!
+  homePhone: String!
+  email: String!
+  pets: [Pet!]!
+}
+
+type PetProfile {
+  id: String!
+  microchip: Boolean!
+  vaccinated: Boolean!
+  pet_id: String!
+  pet: Pet!
+}
+
+type Pet {
+  id: String!
+  name: String!
+  type: String!
+  isHouseTrained: Boolean!
+  breed: String!
+  instagramUrl: String!
+  owner_id: String!
+  owner: PetOwner!
+  profile_id: String!
+  profile: PetProfile!
+}
+
+type Query {
+  pets: [PetProfile!]!
+  pet(id: ID!): PetProfile!
+  petOwners: [PetOwner!]!
+  petOwner(id: ID!): PetOwner!
+}
+
+type Mutation {
+  createPet(createPetInput: CreatePetInput!, createPetProfileInput: CreatePetProfileInput): Pet!
+  updatePet(id: String!, updatePetInput: UpdatePetInput!): Pet!
+  removePet(id: ID!): Pet!
+  createPetOwner(createPetOwnerInput: CreatePetOwnerInput!): PetOwner!
+  updatePetOwner(id: String!, updatePetOwnerInput: UpdatePetOwnerInput!): PetOwner!
+  removePetOwner(id: String!): PetOwner!
+  createPetProfile(createPetProfileInput: CreatePetProfileInput!): PetProfile!
+  updatePetProfile(id: String!, updatePetInput: UpdatePetProfileInput!): PetProfile!
+  removePetProfile(id: ID!): PetProfile!
+}
+
+input CreatePetInput {
+  name: String!
+  type: String!
+  isHouseTrained: Boolean!
+  breed: String!
+  instagramUrl: String!
+  owner_id: String
+}
+
+input CreatePetProfileInput {
+  microchip: Boolean!
+  vaccinated: Boolean!
+  pet_id: String
+}
+
+input UpdatePetInput {
+  name: String
+  type: String
+  isHouseTrained: Boolean
+  breed: String
+  instagramUrl: String
+  owner_id: String
+}
+
+input CreatePetOwnerInput {
+  firstname: String!
+  lastname: String!
+  address: String
+  mobile: String
+  homePhone: String
+  email: String
+}
+
+input UpdatePetOwnerInput {
+  firstname: String
+  lastname: String
+  address: String
+  mobile: String
+  homePhone: String
+  email: String
+}
+
+input UpdatePetProfileInput {
+  microchip: Boolean
+  vaccinated: Boolean
+  pet_id: String
+}
