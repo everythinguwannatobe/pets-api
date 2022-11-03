@@ -17,7 +17,9 @@ export class PetProfile {
     @Column('uuid', {nullable: true})
     pet_id!: string
 
-
-    @OneToOne(() => Pet, (pet) => pet.profile) 
+    @OneToOne(() => Pet, (pet) => pet.profile, {
+        cascade:  ["insert", "update", "soft-remove", "recover"],
+    }) 
+    @JoinColumn({ name: 'pet_id', referencedColumnName: 'id' })
     pet!: Pet
 }
